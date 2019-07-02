@@ -90,16 +90,6 @@ router.route('/python').get(function(req,res){
 	console.log(req);
 });
 
-// ==== python 통신을 위한 socket io === //
-
-io.sockets.on('connection',function(socket){
-	console.log('socket object data : ',socket);
-	socket.emit('hello');
-	sockets.on('message_from_client',function(msg){
-		console.log('msg:',msg);
-	});
-});
-
 //===== Passport 관련 라우팅 =====//
 
 // 홈 화면 - index.ejs 템플릿을 이용해 홈 화면이 보이도록 함
