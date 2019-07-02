@@ -38,6 +38,17 @@ var route_loader = require('./routes/route_loader');
 // 익스프레스 객체 생성
 var app = express();
 
+//python 통신을 위한 코드
+var pythonapp = express();
+var pythonhttp = require('http').Server(pythonapp);
+pythonapp.use(bodyParser.json())
+pythonapp.post('/',function(req,res){
+	var msg = req.body.msg;
+	console.log("python: "+msg);
+});
+pythonhttp.listen(9000,function(){
+	console.log('listening...python');
+});
 
 //===== 뷰 엔진 설정 =====//
 app.set('views', __dirname + '/views');
