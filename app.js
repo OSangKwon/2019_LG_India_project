@@ -83,12 +83,11 @@ route_loader.init(app, router);
 
 //===== python 통신을 위한 라우팅 ==== //
 
-router.route('/python').post(function(req,res){
+router.route('/python').get(function(req,res){
 	console.log('python에서 data 요청');
 	var msg = {'data' : 1} ;
 	res.send(msg);
 });
-
 
 //===== Passport 관련 라우팅 =====//
 
