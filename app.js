@@ -155,6 +155,15 @@ router.route('/logout').get(function(req, res) {
 	res.redirect('/');
 });
 
+// my pet button 요청
+router.route('/mypet').get(function(req,res){
+	console.log('/mypet 패스 요청됨.');
+	if (Array.isArray(req.user)) {
+		res.render('mypet.ejs', {user: req.user[0]._doc});
+	} else {
+		res.render('mypet.ejs', {user: req.user});
+	}
+})
 
 
 //===== Passport Strategy 설정 =====//

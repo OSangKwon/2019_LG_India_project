@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 		
-		<title>PROFILE</title>
+		<title>mypet</title>
 		
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
@@ -19,7 +19,7 @@
 		<div class="container">			
 						
 			<div class="page-header text-center">
-		        <h1><span class="fa fa-book"></span> USER PROFILE </h1>
+		        <h1><span class="fa fa-book"></span> MY PET </h1>
 		        <a href="/logout" class="btn btn-default btn-sm">LOGOUT</a>
 		    </div>
 			<br>
@@ -27,18 +27,14 @@
 		
 		        <div class="col-sm-6">
 		            <div class="well">
-		                <h3><span class="fa fa-user"></span> PROFILE INFO </h3>
+		                <h3><span class="fa fa-user"></span> PET INFO </h3>
 						<br>
 						<p>
-		                	<strong>ID</strong>: <%= user.email %>
-		                	<br><br>
 		                	<strong>NAME</strong>: <%= user.name %>
 		                </p>
 						<br>
 		            </div>
-				</div>
-				<a href="/mypet" class="btn btn-default btn-sm">MY PET</a>
-		
+				</div>		
 		    </div>
 			
 		</div>	
