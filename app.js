@@ -3,7 +3,8 @@
 // Express 기본 모듈 불러오기
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , io = require('socket.io')(http);
 // Express의 미들웨어 불러오기
 var bodyParser = require('body-parser')
   , cookieParser = require('cookie-parser')
@@ -90,13 +91,7 @@ router.route('/python').get(function(req,res){
 });
 
 // ==== python 통신을 위한 socket io === //
-var py_app = require('express')();
-var py_http = require('http').Server(py_app);
-var io = require('socket.io')(py_http);
 
-py_http.listen(8080,function(){
-	console.log('listening ... ');
-});
 io.sockets.on('connection',function(socket){
 	console.log('socket object data : ',socket);
 	socket.emit('hello');
