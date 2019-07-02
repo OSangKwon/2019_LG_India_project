@@ -1,7 +1,4 @@
 
-/*
- * 테스트용 라우팅 모듈
- */
 
 var test1 = function(req, res) {
 	console.log('test 모듈 안에 있는 test1 호출됨.');
