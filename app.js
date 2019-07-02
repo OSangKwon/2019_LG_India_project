@@ -4,7 +4,6 @@
 var express = require('express')
   , http = require('http')
   , path = require('path');
-
 // Express의 미들웨어 불러오기
 var bodyParser = require('body-parser')
   , cookieParser = require('cookie-parser')
@@ -87,21 +86,25 @@ router.route('/python').get(function(req,res){
 	console.log('python에서 data 요청');
 	var msg = {'data' : 1} ;
 	res.send(msg);
+	console.log(req);
 });
-// ==== python tcp 통신을 위한 소켓 통신 ==== //
 
-var py_app = express();
+// ==== python 통신을 위한 socket io === //
+var py_app = require('express')();
 var py_http = require('http').Server(py_app);
 var io = require('socket.io')(py_http);
 
-py_app.get('/',function(req,res){
-	console.log('python tcp / 요청');
-	var msg = {'data' : 'test'};
-	res.send(msg);
-})
-py_http.listen(9000,function(){
-	console.log('listening ... tcp python');
+py_http.listen(8080,function(){
+	console.log('listening ... ');
 });
+io.sockets.on('connection',function(socket){
+	console.log('socket object data : ',socket);
+	socket.emit('hello');
+	sockets.on('message_from_client',function(msg){
+		console.log('msg:',msg);
+	});
+});
+
 //===== Passport 관련 라우팅 =====//
 
 // 홈 화면 - index.ejs 템플릿을 이용해 홈 화면이 보이도록 함
