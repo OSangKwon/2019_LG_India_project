@@ -38,18 +38,6 @@ var route_loader = require('./routes/route_loader');
 // 익스프레스 객체 생성
 var app = express();
 
-//python 통신을 위한 코드
-var pythonapp = express();
-var pythonhttp = require('http').Server(pythonapp);
-pythonapp.use(bodyParser.json())
-pythonapp.post('/',function(req,res){
-	var msg = req.body.msg;
-	console.log("python: "+msg);
-});
-pythonhttp.listen(9000,function(){
-	console.log('listening...python');
-});
-
 //===== 뷰 엔진 설정 =====//
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -93,7 +81,13 @@ app.use(flash());
 var router = express.Router();
 route_loader.init(app, router);
 
+//===== python 통신을 위한 라우팅 ==== //
 
+router.route('/python').post(function(req,res){
+	console.log('python에서 data 요청');
+	var msg = {'data' : 1} ;
+	res.send(msg);
+});
 
 
 //===== Passport 관련 라우팅 =====//
