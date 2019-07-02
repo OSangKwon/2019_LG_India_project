@@ -88,7 +88,20 @@ router.route('/python').get(function(req,res){
 	var msg = {'data' : 1} ;
 	res.send(msg);
 });
+// ==== python tcp 통신을 위한 소켓 통신 ==== //
 
+var py_app = express();
+var py_http = require('http').Server(py_app);
+var io = require('socket.io')(py_http);
+
+py_app.get('/',function(req,res){
+	console.log('python tcp / 요청');
+	var msg = {'data' : 'test'};
+	res.send(msg);
+})
+py_http.listen(9000,function(){
+	console.log('listening ... tcp python');
+});
 //===== Passport 관련 라우팅 =====//
 
 // 홈 화면 - index.ejs 템플릿을 이용해 홈 화면이 보이도록 함
