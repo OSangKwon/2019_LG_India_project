@@ -105,7 +105,10 @@ router.route('/right').get(function(req,res){
 	console.log('/right 요청');
 	msg = 'd';
 });
-
+router.route('/stop').get(function(req,res){
+	console.log('/stop 요청');
+	msg = 'x';
+});
 //===== Passport 관련 라우팅 =====//
 
 // 홈 화면 - index.ejs 템플릿을 이용해 홈 화면이 보이도록 함
