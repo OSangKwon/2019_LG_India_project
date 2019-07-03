@@ -109,7 +109,7 @@ router.route('/stop').get(function(req,res){
 	console.log('/stop 요청');
 	msg = 'x';
 });
-router.route('open').get(function(req,res){
+router.route('/open').get(function(req,res){
 	console.log('/open 요청');
 	msg = 'o';
 });
