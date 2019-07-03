@@ -82,12 +82,28 @@ var router = express.Router();
 route_loader.init(app, router);
 
 //===== python 통신을 위한 라우팅 ==== //
+var msg = '';
 
 router.route('/python').get(function(req,res){
 	console.log('python에서 data 요청');
-	var msg = 'w' ;
 	res.send(msg);
-	console.log(req);
+	msg = '';
+});
+router.route('/front').get(function(req,res){
+	console.log('/front 요청');
+	msg = 'w';
+});
+router.route('/back').get(function(req,res){
+	console.log('/back 요청');
+	msg = 's';
+});
+router.route('/left').get(function(req,res){
+	console.log('/left 요청');
+	msg = 'a';
+});
+router.route('/right').get(function(req,res){
+	console.log('/right 요청');
+	msg = 'd';
 });
 
 //===== Passport 관련 라우팅 =====//
@@ -169,7 +185,14 @@ router.route('/mypet').get(function(req,res){
 		res.render('mypet.ejs', {user: req.user});
 	}
 })
-
+router.route('/key').get(function(req,res){
+	console.log('/key 패스 요청됨.');
+	if (Array.isArray(req.user)) {
+		res.render('key.ejs', {user: req.user[0]._doc});
+	} else {
+		res.render('key.ejs', {user: req.user});
+	}
+})
 
 //===== Passport Strategy 설정 =====//
 
