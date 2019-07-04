@@ -113,6 +113,11 @@ router.route('/open').get(function(req,res){
 	console.log('/open 요청');
 	msg = 'o';
 });
+router.route('/auto').get(function(req,res){
+	console.log('/auto 요청');
+	msg = 'g';
+});
+
 //===== Passport 관련 라우팅 =====//
 
 // 홈 화면 - index.ejs 템플릿을 이용해 홈 화면이 보이도록 함
