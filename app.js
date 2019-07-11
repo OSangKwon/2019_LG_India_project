@@ -86,7 +86,7 @@ var msg = '';
 
 router.route('/python').get(function(req,res){
 	console.log('python에서 data 요청');
-	res.send(msg);
+	res.write(msg);
 	msg = '';
 });
 router.route('/front').get(function(req,res){
