@@ -117,6 +117,22 @@ router.route('/auto').get(function(req,res){
 	console.log('/auto 요청');
 	msg = 'g';
 });
+router.route('/cycle').get(function(req,res){
+	console.log('/cycle 요청');
+	msg = 't';
+});
+router.route('/sgo').get(function(req,res){
+	console.log('/sgo 요청');
+	msg = 'z';
+});
+router.route('/tikka').get(function(req,res){
+	console.log('/tikka 요청');
+	msg = 'i';
+});
+router.route('/wiggle').get(function(req,res){
+	console.log('/wiggle 요청');
+	msg = 'k';
+});
 
 //===== Passport 관련 라우팅 =====//
 
