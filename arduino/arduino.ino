@@ -29,9 +29,9 @@ void right(){
 }
 void front(){
   analogWrite(5,0);
-  analogWrite(6,value);
+  analogWrite(6,value+100);
   analogWrite(10,0);
-  analogWrite(11,value);
+  analogWrite(11,value+100);
 }
 void back(){
   analogWrite(5,value);
@@ -44,6 +44,18 @@ void stopgo(){
    analogWrite(6,0);
    analogWrite(10,0);
    analogWrite(11,0);
+}
+void rightTurn(){
+   analogWrite(5,0);
+   analogWrite(6,value+100);
+   analogWrite(10,0);
+   analogWrite(11,value);
+}
+void leftTurn(){
+  analogWrite(5,0);
+   analogWrite(6,value);
+   analogWrite(10,0);
+   analogWrite(11,value+100);
 }
 void feed(){
   stopgo();
@@ -107,14 +119,13 @@ void setup() {
 }
 
 void loop() {
-  if(Serial.available())
+/*  if(Serial.available())
   {
     Serial3.write(Serial.read());
   }
-  // put your main code here, to run repeatedly:
+  */
   char input[100] = {0};
   motor1.write(0);
-  // put your main code here, to run repeatedly:
   while(Serial3.available()>0){
     String inputstring = Serial3.readStringUntil('\n');
     inputstring.toCharArray(input,inputstring.length()+1);
@@ -127,12 +138,47 @@ void loop() {
     }
     else if( a == 'a'){
       left();
+      delay(1500);
+      front();
     }
     else if( a == 'd'){
       right(); 
+      delay(1500);
+      front();
     }
     else if( a == 'x'){
       stopgo();         
+    }
+
+     else if( a == 't'){ //무한 회전
+      right();
+    }
+    else if( a == 'z'){ //S모양 주행
+      for(int i=0; i<3; i++){
+        rightTurn();
+        delay(1000);
+        leftTurn();
+        delay(1000);
+      }
+      stopgo();
+    }
+    else if( a == 'i') { //앞뒤로 까딱
+      for(int i=0; i<3; i++){
+        front();
+        delay(500);
+        back();
+        delay(500);  
+      }
+      stopgo();
+    }
+    else if( a == 'k') { //좌우로 까딱
+      for(int i=0; i<3; i++){
+        right();
+        delay(500);
+        left();
+        delay(500);
+        }
+        stopgo();
     }
     else if( a == 'o'){
       feed();
